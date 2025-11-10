@@ -1,0 +1,14 @@
+%{
+#include "calc.tab.h"
+#include <stdlib.h>
+%}
+%option noyywrap
+
+%% 
+[0-9]+        { yylval = atoi(yytext); return NUMBER; }
+[ \t]         { /* skip spaces and tabs */ }
+\n            { return '\n'; }
+[+\-*/()]     { return yytext[0]; }
+.             { /* ignore anything else */ }
+
+%%
